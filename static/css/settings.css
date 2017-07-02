@@ -1,0 +1,44 @@
+
+.block{
+    padding-right: 10%;
+    padding-left:10%;
+}
+
+.block>a>div{
+    padding-top:10px;
+    background-color:#1995dc;
+    border-radius: 15px;
+}
+
+.block>a>div>i{
+    font-size:10em;
+    color:white;
+    padding-bottom: 10px;
+}
+
+.block>a>div>p{
+    backround-color:#2079FF;
+    border-top:1px solid white;
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+/* unvisited link */
+a:link {
+    color: #555555;
+}
+
+/* visited link */
+a:visited {
+    color: #555555;
+}
+
+/* mouse over link */
+a:hover {
+    color: #555555;
+}
+
+/* selected link */
+a:active {
+    color: #555555;
+}

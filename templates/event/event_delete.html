@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<form method="post">
+	{% csrf_token %}
+	<h3>Do you want to delete  the event for {{ object.client }} at {{ object.event_date }} </h3>
+   <button class="btn btn-danger" type="submit">Yes, Delete</button>
+   <a class="btn btn-default" href="{% url 'event:event_list'%}">Cancel</a>
+
+</form>
+
+{% endblock %}

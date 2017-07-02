@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+
+{% block content%}
+    <div class="col-md-12 text-center">
+        <h1>ITEMS</h1>
+    </div>
+    <table class="table table-bordered">
+		<thead>
+			<tr>
+				<td>Description</td>
+				<td>Quantity</td>
+				<td>Actions</td>
+			</tr>
+		</thead>
+        {% if object_list %}
+		<tbody>
+			{% for item in object_list%}
+			<tr>
+				<td>{{ item.description}}</td>
+				<td>{{ item.quantity}}</td>
+				<td>
+					<a class="btn btn-primary" href="{% url 'settings:item_update' item.id %}">Edit</a>
+					<a class="btn btn-danger" href="{% url 'settings:item_delete' item.id %}">Delete</a>
+
+				</td>
+			</tr>
+			{% endfor%}
+		</tbody>
+    	{%else%}
+        <tfoot>
+            <tr>
+                <td colspan="6"><h3>No hay registros de solicitud</h3></td>
+            </tr>
+        </tfoot>
+        {% endif %}
+        </table>
+        <ul class="pager">
+            <li>
+                {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">
+                    Previous
+                </a>
+                {% endif %}
+            </li>
+            <li>
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">
+                    Next
+                </a>
+                {% endif %}
+            </li>
+        </ul>
+	<a class="btn btn-primary" href="{% url 'settings:item_create' %}">New</a>
+{%endblock%}

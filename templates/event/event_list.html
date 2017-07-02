@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+
+{% block content%}
+    <div class="col-md-3 text-right">
+        <a class="icon-button" href="{% url 'event:event_list'%}?newmonth={{ previous_month }}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    </div>
+    <div class="col-md-6 text-center">
+        <h1>{{ month }}</h1>
+    </div>
+	<div class="col-md-3 text-left">
+        <a class="icon-button" href="{% url 'event:event_list'%}?newmonth={{ next_month }}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+    <table class="table table-bordered">
+		<thead>
+			<tr>
+				<td>No.Evento</td>
+				<td>Date</td>
+				<td>Client</td>
+				<td>Location</td>
+				<td>Actions</td>
+			</tr>
+		</thead>
+        {% if object_list %}
+		<tbody>
+			{% for event in object_list%}
+			<tr>
+				<td>{{ event.id }}</td>
+				<td>{{ event.event_date }}</td>
+				<td>{{ event.client }}</td>
+				<td>{{ event.location}}</td>
+				<td>
+					<a class="btn btn-primary" href="{% url 'event:event_update' event.id %}">Editar</a>
+					<a class="btn btn-danger" href="{% url 'event:event_delete' event.id %}">Eliminar</a>
+					
+				</td>
+			</tr>
+			{% endfor%}
+		</tbody>
+    	{%else%}
+        <tfoot>
+            <tr>
+                <td colspan="6"><h3>No hay registros de solicitud</h3></td>
+            </tr>
+        </tfoot>
+        {% endif %}
+        </table>
+	<a class="btn btn-primary" href="{% url 'event:event_create' %}">Agregar</a>
+{%endblock%}
+<!--TODO implement  pagenation -->

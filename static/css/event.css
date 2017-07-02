@@ -1,0 +1,12 @@
+.commentField{
+    width: 100%;
+    height: 349px;
+}
+
+.calculateTotal{
+    /*
+    *Is use to trigger onblur event with JQUERY
+    *event_create_form.js
+    *$('.calculateTotal').blur(...);
+    */
+}

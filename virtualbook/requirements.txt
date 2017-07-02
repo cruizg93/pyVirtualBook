@@ -1,0 +1,2 @@
+django-easy-pdf>=0.2.0
+WeasyPrint>=0.34

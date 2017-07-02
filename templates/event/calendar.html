@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block extrastatic%}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css'%}">
+{% endblock %}
+
+{% block content%}
+    <div class="row">
+        <div class="col-md-12 col-xs-12 text-center"><h1>CALENDAR</h1></div>
+        <div class="col-md-12 col-xs-12 text-center monthControl">
+            <h2><a class="icon-button" href="{% url 'event:calendarView'%}?newmonth={{ previous_month }}"><span class="glyphicon glyphicon-chevron-left"></span></a>{{ month }}<a class="icon-button" href="{% url 'event:calendarView'%}?newmonth={{ next_month }}"><span class="glyphicon glyphicon-chevron-right"></span></a></h2>
+        </div>
+    </div>
+    <div class="calendar col-md-12 text-center">
+        <div class="day dayName">SUNDAY</div>
+        <div class="day dayName">MONDAY</div>
+        <div class="day dayName">TUESDAY</div>
+        <div class="day dayName">WEDNESDAY</div>
+        <div class="day dayName">THURSDAY</div>
+        <div class="day dayName">FRIDAY</div>
+        <div class="day dayName lastDay">SATURDAY</div>
+
+    </div>
+    <script type="text/javascript">
+        {% if object_list %}
+            var events = {{ object_list|safe }};
+            var calendarMonth = '{{ month }}';
+        {%else%}
+                alert("vacio");
+        {% endif %}
+    </script>
+{%endblock%}
+{% block javascript %}
+<script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
+{% endblock %}
