@@ -22,7 +22,9 @@
     </style>
 </head>
 <body>
-	<div class="container-fluid">
+    {% block containerType %}
+	<div class="container">
+    {% endblock %}
 	{% block navbar %}
 		<div class="bs-docs-section clearfix">
 			<div class="row">

@@ -1,5 +1,4 @@
 {% extends 'base/base.html' %}
-
 {% block content%}
     <div class="col-md-12 text-center">
         <h1>LOCATIONS</h1>
@@ -18,7 +17,7 @@
 			{% for location in object_list%}
 			<tr>
 				<td>{{ location.building_name}}</td>
-				<td>{{ location.location}}</td>
+				<td>{{ location.address}} - {{ location.city }}</td>
 				<td>{{ location.phone_number}}</td>
 				<td>
 					<a class="btn btn-primary" href="{% url 'settings:location_update' location.id %}">Edit</a>

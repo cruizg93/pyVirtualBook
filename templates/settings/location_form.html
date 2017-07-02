@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
-
+{% load widget_tweaks %}
+{% load staticfiles %}
 {% block content %}
     <form method="POST">
 	{% csrf_token %}
@@ -7,4 +8,28 @@
     <button type="submit" class="btn btn-primary">Guardar</button>
     <a href="{% url 'settings:location_list' %}" class="btn btn-danger">Cancel</a>
     </form>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        var static = '{% static ""%}';
+
+        /**
+         * Because the select fields are been load with JSON files after the window is ready
+         * you need to capture the form values when you try to edit and the assign the value
+         * to the right select field.
+         */
+        var editableLocation;
+        var editableState, editableCounty, editableCity;
+        {% if form.address.value  %}
+            editableLocation = true;
+            editableState ='{{ form.state.value }}';
+            editableCounty = '{{ form.county.value }}';
+            editableCity = '{{ form.city.value }}';
+        {% else %}
+            editableLocation = false;
+        {% endif %}
+    </script>
+<script type="text/javascript" src="{% static 'js/states.json' %}"></script>
+<script type="text/javascript" src="{% static 'js/location_form.js' %}"></script>
 {% endblock %}

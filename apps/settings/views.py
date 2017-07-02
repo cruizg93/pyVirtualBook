@@ -44,7 +44,7 @@ class LocationCreate(CreateView):
     model = Location
     form_class = LocationForm
     template_name = 'settings/location_form.html'
-    success_url =  reverse_lazy('settings:location_list')
+    success_url = reverse_lazy('settings:location_list')
 
 
 class LocationUpdate(UpdateView):
