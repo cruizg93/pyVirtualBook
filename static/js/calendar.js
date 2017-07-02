@@ -39,11 +39,13 @@ function fillCalendar(jsonEvent){
         newHTML+= "</p>";
         newHTML +="<ul class='events'>";
         if(eventDay===d){
-            newHTML +="<li><a id='"+ids[0]+"' href='edit/"+ids[0]+"'>"+names[0]+" - "+dropOffTime[0]+"</a></li>";
-            days.shift();
-            ids.shift();
-            names.shift();
-            dropOffTime.shift();
+            while(days.length>0 && getDayNumber(days[0])===d){
+                newHTML +="<li><a id='"+ids[0]+"' href='edit/"+ids[0]+"'>"+names[0]+" - "+dropOffTime[0]+"</a></li>";
+                days.shift();
+                ids.shift();
+                names.shift();
+                dropOffTime.shift();
+            }
         }else{
             newHTML +="<li><a></a></li>";
         }
@@ -83,6 +85,5 @@ function fillBegin(month,year){
 function fillEnd(month,year){
     var date = new Date(month+"/01/"+year);
     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-    console.log(6-lastDay.getDay());
     return 6-lastDay.getDay();
 }
