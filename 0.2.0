@@ -1,0 +1,25 @@
+Collecting django-easy-pdf
+  Downloading django_easy_pdf-0.1.1-py2.py3-none-any.whl
+Requirement already satisfied (use --upgrade to upgrade): django>=1.8 in c:\users\cris-valen\documents\proyectos\python\venv\virtualbook\lib\site-packages (from django-easy-pdf)
+Collecting xhtml2pdf>=0.2b1 (from django-easy-pdf)
+  Downloading xhtml2pdf-0.2b1.tar.gz (97kB)
+Collecting reportlab>=3 (from django-easy-pdf)
+  Downloading reportlab-3.4.0.tar.gz (2.0MB)
+Requirement already satisfied (use --upgrade to upgrade): pytz in c:\users\cris-valen\documents\proyectos\python\venv\virtualbook\lib\site-packages (from django>=1.8->django-easy-pdf)
+Collecting html5lib==1.0b10 (from xhtml2pdf>=0.2b1->django-easy-pdf)
+  Downloading html5lib-1.0b10-py2.py3-none-any.whl (112kB)
+Collecting httplib2 (from xhtml2pdf>=0.2b1->django-easy-pdf)
+  Downloading httplib2-0.10.3.tar.gz (204kB)
+Collecting pyPdf2 (from xhtml2pdf>=0.2b1->django-easy-pdf)
+  Downloading PyPDF2-1.26.0.tar.gz (77kB)
+Collecting Pillow (from xhtml2pdf>=0.2b1->django-easy-pdf)
+  Downloading Pillow-4.2.0.tar.gz (12.7MB)
+Collecting six (from xhtml2pdf>=0.2b1->django-easy-pdf)
+  Downloading six-1.10.0-py2.py3-none-any.whl
+Requirement already satisfied (use --upgrade to upgrade): pip>=1.4.1 in c:\users\cris-valen\documents\proyectos\python\venv\virtualbook\lib\site-packages (from reportlab>=3->django-easy-pdf)
+Requirement already satisfied (use --upgrade to upgrade): setuptools>=2.2 in c:\users\cris-valen\documents\proyectos\python\venv\virtualbook\lib\site-packages (from reportlab>=3->django-easy-pdf)
+Collecting webencodings (from html5lib==1.0b10->xhtml2pdf>=0.2b1->django-easy-pdf)
+  Downloading webencodings-0.5.1-py2.py3-none-any.whl
+Collecting olefile (from Pillow->xhtml2pdf>=0.2b1->django-easy-pdf)
+  Downloading olefile-0.44.zip (74kB)
+Installing collected packages: webencodings, six, html5lib, httplib2, pyPdf2, olefile, Pillow, reportlab, xhtml2pdf, django-easy-pdf

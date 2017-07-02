@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'apps.settings',
     'apps.event',
     'widget_tweaks',
+    'easy_pdf',
 ]
 
 MIDDLEWARE = [

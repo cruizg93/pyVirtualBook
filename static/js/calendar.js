@@ -29,7 +29,11 @@ function fillCalendar(jsonEvent){
         if(dayOfWeekIndex===0){
             newHTML += "<div class='row'>";
         }
-        newHTML +="<div class='day'>";
+        if(eventDay===d){
+            newHTML +="<div class='day'>";
+        }else{
+            newHTML +="<div class='day empty'>";
+        }
         newHTML +="<p class='number'><span class='insideDayName'>"+dayName[dayOfWeekIndex]+"</span>";
         if(d>0 && d<= (daysInMonth(getMonthNumber(calendarMonth),year))){
             newHTML += d;

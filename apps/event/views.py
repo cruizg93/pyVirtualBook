@@ -1,12 +1,27 @@
-from django.db import connection
 import datetime
 import calendar
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse_lazy
 from django.core import serializers
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.conf import settings
+from easy_pdf.views import PDFTemplateView
 from apps.event.models import Event, ItemEvent
 from apps.event.forms import EventForm, ItemEventForm
+
+
+class HelloPDFView(PDFTemplateView):
+    template_name = 'reports/contract_PDF.html'
+    base_url = 'file://'+settings.STATIC_URL
+    print(base_url)
+    download_filename = 'hello.pdf'
+
+    def get_context_data(self, **kwargs):
+        return super(HelloPDFView, self).get_context_data(
+            pagesize="A4",
+            title='Hi there',
+            **kwargs
+        )
 
 
 class CalendarView(ListView):
