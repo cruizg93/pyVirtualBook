@@ -5,10 +5,10 @@ class Location(models.Model):
     location = models.CharField(max_length=100)
     building_name = models.CharField(max_length=100, null=True)
     phone_number = models.CharField(max_length=20)
-	# TODO: formalize address (city, zipcode, state, county)
+    # TODO: formalize address (city, zipcode, state, county)
 
     def __str__(self):
-        return '{} | {}'.format(self.building_name,self.location)
+        return '{} | {}'.format(self.building_name, self.location)
 
 
 class Client(models.Model):

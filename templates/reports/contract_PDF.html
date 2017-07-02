@@ -42,10 +42,11 @@
                 <p>THIS CONTRACT PRICE/AGREEMENT IS BASED ON THE QUANTITY INDICATED AT ORIGINAL SIGNING. A DECREASE IN CHAIR AMOUNTS WILL MAY AFFECT THE RENTAL PRICE PER CHAIR</p>
             </div>
             <div class="row">
-                <p>CHIAVARI CHAIR NEEDED <span class="data">__</span> @ each <span class="data">__</span> Total <span class="data">__</span></p>
-                <p>CHIAVARI CHAIR FINISH: please circle GOLD, SILVE, BLACK, MAHOGANY</p>
-                <p>FOLDING WOOD WHITE / CEREMONY CHAIRS QUANTITY NEEDED ___ @ each: ____</p>
+                <p>CHIAVARI CHAIR NEEDED <span class="data">{{ itemEvent.quantity }}</span> @ each: <span class="data">{{ itemEvent.unit_price }}</span> Total <span class="data">_</span> </p>
                 <p>CHIAVARI CHAIR CUSHION: please circle IVORY, WHITE, BLACK</p>
+                <p>CHIAVARI CHAIR FINISH: please circle GOLD, SILVER, BLACK, MAHOGANY</p>
+                <p><span class="data">{{ itemEvent.item.description }}</span></p>
+                <p>FOLDING WOOD WHITE / CEREMONY CHAIRS QUANTITY NEEDED <span class="data">{{ itemEvent.quantity }}</span> @ each: <span class="data">{{ itemEvent.unit_price }}</span></p>
                 <p>DELIVERY: $ <span class="data">{{ event.delivery_cost }}</span></p>
                 <p>SUBTOTAL: <span class="data">___</span></p>
                 <p>SALES TAX <span class="data">{{ event.tax_percentage }}: _____ </span> </p>

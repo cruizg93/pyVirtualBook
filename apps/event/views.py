@@ -30,12 +30,15 @@ class ContractPDFView(PDFTemplateView):
     download_filename = 'contract.pdf'
 
     def get_context_data(self, **kwargs):
-        event = Event.objects.filter(id=21).first()
+        pk = self.kwargs.get('pk', 0)
+        event = Event.objects.filter(id=pk).first()
+        itemEvent = ItemEvent.objects.filter(event__id=pk).first()
         context = super(ContractPDFView, self).get_context_data(
             pagesize="A4",
             title=event.event_name,
             base_url=self.base_url,
             event=event,
+            itemEvent=itemEvent,
             **kwargs
         )
         print("******************")

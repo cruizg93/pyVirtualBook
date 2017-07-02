@@ -110,7 +110,7 @@
 		<div class="col-md-12 text-center">
 			<button class="btn btn-primary " type="submit">Guardar</button>
             {% if id %}
-            <a href="{% url 'event:pdf' %}" class="btn btn-default" target="_blank">Contract PDFS</a>
+            <a href="{% url 'event:pdf' id%}" class="btn btn-default" target="_blank">Contract PDFS</a>
             {% endif %}
             <a href="{% url 'event:event_list' %}" class="btn btn-danger">Cancel</a>
 		</div>
