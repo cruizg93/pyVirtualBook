@@ -13,15 +13,34 @@ from apps.event.forms import EventForm, ItemEventForm
 class HelloPDFView(PDFTemplateView):
     template_name = 'reports/contract_PDF.html'
     base_url = 'file://'+settings.STATIC_URL
-    print(base_url)
     download_filename = 'hello.pdf'
 
     def get_context_data(self, **kwargs):
         return super(HelloPDFView, self).get_context_data(
             pagesize="A4",
             title='Hi there',
+            base_url=self.base_url,
             **kwargs
         )
+
+
+class ContractPDFView(PDFTemplateView):
+    template_name = 'reports/contract_PDF.html'
+    base_url = 'file://' + settings.STATIC_URL
+    download_filename = 'contract.pdf'
+
+    def get_context_data(self, **kwargs):
+        event = Event.objects.filter(id=21).first()
+        context = super(ContractPDFView, self).get_context_data(
+            pagesize="A4",
+            title=event.event_name,
+            base_url=self.base_url,
+            event=event,
+            **kwargs
+        )
+        print("******************")
+        print(event)
+        return context
 
 
 class CalendarView(ListView):

@@ -65,20 +65,27 @@ function fillCalendar(jsonEvent){
     $('.calendar div:last').after(newHTML);
 }
 
-
-
 function getDayNumber(date){
   return new Date(date).getDate();
 }
 
-function getMonthNumber(month){
-  return new Date(Date.parse(month+" 1, 2017")).getMonth()+1;
+/*
+this function gives you the month number [1-12]
+ */
+function getMonthNumber(month, year){
+  return new Date(Date.parse(month+" 1,"+year)).getMonth()+1;
 }
 
+/*
+Total of days in specific month and year
+ */
 function daysInMonth(month, year) {
   return new Date(year, month, 0).getDate();
 }
 
+/*
+this function gives you the total of empty spots at the begin of the calendar
+ */
 function fillBegin(month,year){
     var date = new Date(month+"/01/"+year);
     var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -86,6 +93,9 @@ function fillBegin(month,year){
     return firstDay.getDay();
 }
 
+/*
+this function gives you the total of empty spots at the end of the calendar
+ */
 function fillEnd(month,year){
     var date = new Date(month+"/01/"+year);
     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);

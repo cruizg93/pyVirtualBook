@@ -1,10 +1,18 @@
 {% extends "easy_pdf/base.html" %}
 
 {% block extra_style %}
+
     <style type="text/css">
         body {
             font-family: "Helvetica", "sans-serif";
             color: #333333;
+        }
+        .data{
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .agreement{
+
         }
     </style>
 {% endblock %}
@@ -12,7 +20,46 @@
 {% block content %}
     <div id="content">
         <div class="main">
-            <h1>Hi there!</h1>
+            <div class="row">
+                <p>EVENT DAY <span class="data">{{ event.event_date }}</span></p>
+            </div>
+            <div class="row agreement">
+                <p><h2>EQUIPMENT RENTAL AGREEMENT <span>- must be completed in its entirety by Lessee</span></h2></p>
+                <p>TODAY'S DATE <span class="data">{{ event.contact_date }}</span> FULL LEGAL NAME OF LESSEE <span class="data">{{ event.client.name }}</span></p>
+                <p>DBA BUSSINES NAME (IF ANY)</p>
+                <p>BILLING ADDRESS <span class="data">{{ event.client.company_name }}</span></p>
+                <p>CITY ____ STATE ____ ZIP ____ EMAIL <span class="data">{{ event.client.email }}</span></p>
+                <p>HOME PHONE & CELLPHONE <span class="data">{{ event.client.phone_number }}</span></p>
+                <p>LOCATION OF EVENT OR VENUE NAME <span class="data">{{ event.location.building_name }}</span></p>
+                <p>BALLROOM NAME _______ FLOOR LEVEL ___ DROP OFF TIME <span class="data">{{ event.drop_off_time }}</span> PICK UP <span class="data">{{ event.pick_up_time }}</span></p>
+                <p>TIME EVENT START ___</p>
+                <p>CITY ____ COUNTY ___ STATE <span class="data">FL</span> ZIPCODE ___</p>
+                <p>EVENT VENUE TELEPHONE <span class="data">{{ event.location.phone_number }}</span></p>
+                <p>CONTACT PERSON AT VENUE AND/OR COORDINATOR: <span class="data">{{ event.client.name }}</span></p>
+                <p>ALTERNATE PHONE ___</p>
+            </div>
+            <div class="row">
+                <p>THIS CONTRACT PRICE/AGREEMENT IS BASED ON THE QUANTITY INDICATED AT ORIGINAL SIGNING. A DECREASE IN CHAIR AMOUNTS WILL MAY AFFECT THE RENTAL PRICE PER CHAIR</p>
+            </div>
+            <div class="row">
+                <p>CHIAVARI CHAIR NEEDED <span class="data">__</span> @ each <span class="data">__</span> Total <span class="data">__</span></p>
+                <p>CHIAVARI CHAIR FINISH: please circle GOLD, SILVE, BLACK, MAHOGANY</p>
+                <p>FOLDING WOOD WHITE / CEREMONY CHAIRS QUANTITY NEEDED ___ @ each: ____</p>
+                <p>CHIAVARI CHAIR CUSHION: please circle IVORY, WHITE, BLACK</p>
+                <p>DELIVERY: $ <span class="data">{{ event.delivery_cost }}</span></p>
+                <p>SUBTOTAL: <span class="data">___</span></p>
+                <p>SALES TAX <span class="data">{{ event.tax_percentage }}: _____ </span> </p>
+                <p>GRAND TOTAL <span class="data">______</span></p>
+                <p>Make Checks Payable to: Black Tie Rentals of Florida: (we do accept credit card thru PAYPAL deposit nonrefundable retainer: <span class="data">{{ event.forward_payment }}</span> </p>
+                <p>DUE DATE on (30 days prior to Event - NO EXCEPTIONS BALANCE of <span class="data">______ </span></p>
+            </div>
+            <div class="row">
+                <p>MAIL this entire agreement deposits and final payment to:</p>
+                <p>P.O BOX 7448 WESLEY CHAPEL, FL, 33545</p>
+                <p>For questions please e-mail: <span class="data">eddie@blacktierental.com</span></p>
+                <p>OR CALL 813-479-8110 / 727-409-1979</p>
+            </div>
+
         </div>
     </div>
 {% endblock %}

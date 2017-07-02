@@ -17,6 +17,7 @@ class Event(models.Model):
     tax_percentage = models.FloatField(null=True,blank=True,default=0)
     delivery_cost = models.FloatField(null=True,blank=True,default=0)
     state = models.PositiveSmallIntegerField(null=True,blank=True,default=1)
+    # TODO: add ballroom name, event start time
 
     def __str__(self):
         return '{} | {}{}'.format(self.event_date,self.client.name,self.client.company_name)
