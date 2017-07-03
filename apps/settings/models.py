@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Location(models.Model):
     zipcode = models.IntegerField(null=True)
     state = models.CharField(max_length=2, null=True)
@@ -14,12 +13,21 @@ class Location(models.Model):
         return '{} | {}'.format(self.building_name, self.city)
 
 
+class ClientManager(models.Manager):
+    def get_query_set(self):
+        return (
+            super(Client, self)
+            .get_query_set()
+            .order_by('name')
+        )
+
+
 class Client(models.Model):
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20)
     email = models.EmailField()
-    company_name = models.CharField(max_length=100)
-    # TODO: billing address
+    company_name = models.CharField(max_length=100,null=True,blank=True)
+    billing_address = models.CharField(max_length=100,null=True, blank=True)
 
     def __str__(self):
         return '{} | {}'.format(self.name,self.company_name)
@@ -32,3 +40,4 @@ class Item(models.Model):
 
     def __str__(self):
         return '{} | {}'.format(self.description, self.quantity)
+

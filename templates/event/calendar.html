@@ -11,7 +11,15 @@
     <div class="row">
         <div class="col-md-12 col-xs-12 text-center"><h1>CALENDAR</h1></div>
         <div class="col-md-12 col-xs-12 text-center monthControl">
-            <h2><a class="icon-button" href="{% url 'event:calendarView'%}?newmonth={{ previous_month }}"><span class="glyphicon glyphicon-chevron-left"></span></a>{{ month }}<a class="icon-button" href="{% url 'event:calendarView'%}?newmonth={{ next_month }}"><span class="glyphicon glyphicon-chevron-right"></span></a></h2>
+            <div class="col-md-3 text-right">
+                <a class="icon-button" href="{% url 'event:calendarView'%}?newmonth={{ previous_month }}&newyear={{ year }}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            </div>
+            <div class="col-md-6 text-center">
+                <h1>{{ month }} - {{ year    }}</h1>
+            </div>
+            <div class="col-md-3 text-left">
+                <a class="icon-button" href="{% url 'event:calendarView'%}?newmonth={{ next_month }}&newyear={{ year }}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
         </div>
     </div>
     <div class="calendar col-md-12 text-center">

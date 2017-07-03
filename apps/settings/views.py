@@ -3,6 +3,8 @@ from apps.settings.models import Client, Location, Item
 from apps.settings.forms import ClientForm, LocationForm, ItemForm
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from dal import autocomplete
+from django.db.models import Q
 
 
 def index(request):
@@ -17,7 +19,7 @@ class ClientCreate(CreateView):
     model = Client
     form_class = ClientForm
     template_name = 'settings/client_form.html'
-    success_url = reverse_lazy('event:event_list')
+    success_url = reverse_lazy('settings:client_list')
 
 
 class ClientUpdate(UpdateView):
@@ -84,7 +86,7 @@ class ItemUpdate(UpdateView):
 class ItemList(ListView):
     model = Item
     template_name = 'settings/item_list.html'
-    paginate_by = 10
+    paginate_by = 8
     ordering = ['description']
 
 
@@ -92,3 +94,27 @@ class ItemDelete(DeleteView):
     model = Item
     template_name = 'settings/item_delete.html'
     success_url = reverse_lazy('settings:item_list')
+
+
+class ClientAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Client.objects.all()
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q).order_by('name')
+        return qs
+
+
+class LocationAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Location.objects.all()
+        if self.q:
+            qs = qs.filter(Q(address__istartswith=self.q) | Q(building_name__istartswith=self.q))
+        return qs
+
+
+class ItemAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Item.objects.all()
+        if self.q:
+            qs = qs.filter(description__icontains=self.q)
+        return qs

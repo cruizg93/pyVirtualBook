@@ -27,13 +27,12 @@
                 <p><h2>EQUIPMENT RENTAL AGREEMENT <span>- must be completed in its entirety by Lessee</span></h2></p>
                 <p>TODAY'S DATE <span class="data">{{ event.contact_date }}</span> FULL LEGAL NAME OF LESSEE <span class="data">{{ event.client.name }}</span></p>
                 <p>DBA BUSSINES NAME (IF ANY)</p>
-                <p>BILLING ADDRESS <span class="data">{{ event.client.company_name }}</span></p>
-                <p>CITY ____ STATE ____ ZIP ____ EMAIL <span class="data">{{ event.client.email }}</span></p>
+                <p>BILLING ADDRESS <span class="data">{% if event.client.billing_address %}{{ event.client.billing_address }}{% else %}____________________________{% endif %}</span> EMAIL <span class="data">{{ event.client.email }}</span></p>
                 <p>HOME PHONE & CELLPHONE <span class="data">{{ event.client.phone_number }}</span></p>
                 <p>LOCATION OF EVENT OR VENUE NAME <span class="data">{{ event.location.building_name }}</span></p>
-                <p>BALLROOM NAME _______ FLOOR LEVEL ___ DROP OFF TIME <span class="data">{{ event.drop_off_time }}</span> PICK UP <span class="data">{{ event.pick_up_time }}</span></p>
-                <p>TIME EVENT START ___</p>
-                <p>CITY ____ COUNTY ___ STATE <span class="data">FL</span> ZIPCODE ___</p>
+                <p>BALLROOM NAME <span class="data">{{ event.ballroom }}</span> FLOOR LEVEL <span class="data">{{ event.floor_level }}</span> DROP OFF TIME <span class="data">{{ event.drop_off_time }}</span> PICK UP <span class="data">{{ event.pick_up_time }}</span></p>
+                <p>TIME EVENT START <span class="data">{{ event.start_time }}</span></p>
+                <p>CITY <span class="data">{{ event.location.city }}</span> COUNTY <span class="data">{{ event.location.county }}</span> STATE <span class="data">{{ event.location.state }}</span> ZIPCODE <span class="data">{{ event.location.zipcode }}</span></p>
                 <p>EVENT VENUE TELEPHONE <span class="data">{{ event.location.phone_number }}</span></p>
                 <p>CONTACT PERSON AT VENUE AND/OR COORDINATOR: <span class="data">{{ event.client.name }}</span></p>
                 <p>ALTERNATE PHONE ___</p>

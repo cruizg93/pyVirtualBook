@@ -31,18 +31,21 @@ class ClientForm(forms.ModelForm):
             'phone_number',
             'email',
             'company_name',
+            'billing_address',
         ]
         labels = {
-            'name':'Name',
-            'phone_number':'Phone Number',
-            'email':'E-mail',
-            'company_name':'Company Name',
+            'name': 'Name',
+            'phone_number': 'Phone Number',
+            'email': 'E-mail',
+            'company_name': 'Company Name',
+            'billing_address': 'Billing Address',
         }
         widgets = {
-            'name':forms.TextInput(attrs={'class':	'form-control'}),
-            'phone_number':forms.TextInput(attrs={'class':	'form-control'}),
-            'email':forms.TextInput(attrs={'class':	'form-control'}),
-            'company_name':forms.TextInput(attrs={'class':	'form-control'}),
+            'name': forms.TextInput(attrs={'class':	'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class':	'form-control appUSPhoneNumber'}),
+            'email': forms.TextInput(attrs={'class': 'form-control appEmail'}),
+            'company_name': forms.TextInput(attrs={'class':	'form-control'}),
+            'billing_address': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
@@ -74,5 +77,5 @@ class LocationForm(forms.ModelForm):
             'state': forms.Select(attrs={'class': 'form-control'}),
             'zipcode': forms.NumberInput(attrs={'class': 'form-control'}),
             'building_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'phone_number': forms.TextInput(attrs={'class':	'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class':	'form-control appUSPhoneNumber'}),
         }

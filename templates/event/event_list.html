@@ -2,13 +2,13 @@
 
 {% block content%}
     <div class="col-md-3 text-right">
-        <a class="icon-button" href="{% url 'event:event_list'%}?newmonth={{ previous_month }}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="icon-button" href="{% url 'event:event_list'%}?newmonth={{ previous_month }}&newyear={{ year }}"><span class="glyphicon glyphicon-chevron-left"></span></a>
     </div>
     <div class="col-md-6 text-center">
-        <h1>{{ month }}</h1>
+        <h1>{{ month }} - {{ year    }}</h1>
     </div>
 	<div class="col-md-3 text-left">
-        <a class="icon-button" href="{% url 'event:event_list'%}?newmonth={{ next_month }}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="icon-button" href="{% url 'event:event_list'%}?newmonth={{ next_month }}&newyear={{ year }}"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
     <table class="table table-bordered">
 		<thead>
@@ -30,6 +30,7 @@
 				<td>{{ event.location}}</td>
 				<td>
 					<a class="btn btn-primary" href="{% url 'event:event_update' event.id %}">Editar</a>
+                    <a href="{% url 'event:pdf' event.id%}" class="btn btn-default" target="_blank">PDF</a>
 					<a class="btn btn-danger" href="{% url 'event:event_delete' event.id %}">Eliminar</a>
 					
 				</td>

@@ -8,7 +8,6 @@
 
 <form method="post">
 	{% csrf_token %}
-	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
 				<label>Client</label>
@@ -16,97 +15,121 @@
 			</div>
 		</div>
 		<div class="col-md-6">
-			<label>Location</label>
-			{{ form.location|add_class:"" }}
+			<div class="form-group">
+                <label>Location</label>
+                {{ form.location|add_class:"" }}
+            </div>
 		</div>
-	</div>
-	<div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Ballroom Name</label>
+                {{ form.ballroom }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Floor Level</label>
+                {{ form.floor_level}}
+            </div>
+        </div>
+		<div class="col-md-6">
+            <div class="form-group">
+                <label>Start Time</label>
+                {{ form.start_time}}
+            </div>
+        </div>
+        <div class="col-md-3">
+			<div class="form-group">
+				<label>Drop Off Time</label>
+                {{ form.drop_off_time }}
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group">
+				<label>Pick Up Time</label>
+				{{ form.pick_up_time }}
+			</div>
+		</div>
 		<div class="col-md-6">
 			<div class="form-group">
 				<label>Event Name</label>
 				{{ form.event_name}}
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-3">
 			<div class="form-group">
 				<label>Contact Date</label>
 				{{ form.contact_date}}
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-3">
 			<div class="form-group">
 				<label>Event Date</label>
 				{{  form.event_date }}
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
+        <div class="col-md-6">
 			<div class="form-group">
-				<label>Drop Off Time</label>
-                {{ form.drop_off_time }}
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="form-group">
-				<label>Pick Up Time</label>
-				{{ form.pick_up_time }}
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="form-group">
-			<div class="col-md-6">
 				<label>Item</label>
     			{{ form2.item|add_class:"" }}
 			</div>
-			<div class="col-md-3">
+        </div>
+		<div class="col-md-3">
+            <div class="form-group">
 				<label>Quantity</label>
 				{{  form2.quantity }}
 			</div>
-			<div class="col-md-3">
+        </div>
+		<div class="col-md-3">
+            <div class="form-group">
 				<label>Unit Price</label>
 				{{ form2.unit_price }}
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
+        </div>
+        <div class="col-md-6">
 			<div class="form-group">
-					<label>Comments</label><br/>
-					{{ form.comments }}
-				</div>
-		</div>
-		<div class="col-md-6">
-			<div class="col-md-12 col-xs-12">
-				<label>Delivery</label>
-                {{ form.delivery_cost }}
-			</div>
-			<div class="col-md-12 col-xs-12">
-				<label>Subtotal</label>
-				<input class="form-control" type="text"  id="subtotal" readonly/>
-			</div>
-			<div class="col-md-4 col-xs-4">
-				<label>Tax %</label>
-                {{ form.tax_percentage }}
-			</div>
-			<div class="col-md-8 col-xs-8">
-				<label>Taxes</label>
-				<input class="form-control" type="text" id="taxes" readonly></input>
-			</div>
-			<div class="col-md-12 col-xs-12">
-				<label>Forward Payment</label>
-                {{ form.forward_payment }}
-			</div>
-			<div class="col-md-12 col-xs-12">
-				<label>Total</label>
-				<input class="form-control" type="text" id="total" readonly></input>
+                <label>Comments</label><br/>
+                {{ form.comments }}
 			</div>
 		</div>
-	</div>
-	<div class="row">
+		<div class="col-md-6 noPaddingLR">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Delivery</label>
+                    {{ form.delivery_cost }}
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                    <label>Subtotal</label>
+                    <input class="form-control" type="text"  id="subtotal" readonly/>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-4">
+                <div class="form-group">
+                    <label>Tax %</label>
+                    {{ form.tax_percentage }}
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-8">
+                <div class="form-group">
+                    <label>Taxes</label>
+                    <input class="form-control" type="text" id="taxes" readonly></input>
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                    <label>Forward Payment</label>
+                    {{ form.forward_payment }}
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                    <label>Total</label>
+                    <input class="form-control" type="text" id="total" readonly></input>
+                </div>
+            </div>
+        </div>
 		<div class="col-md-12 text-center">
 			<button class="btn btn-primary " type="submit">Guardar</button>
             {% if id %}
@@ -114,13 +137,12 @@
             {% endif %}
             <a href="{% url 'event:event_list' %}" class="btn btn-danger">Cancel</a>
 		</div>
-	</div>
 </form>
 {{ form.errors }}
 {{ form.non_field_errors }}
-
+{{ form.media }}
 {%endblock%}
 
 {% block javascript %}
-<script type="text/javascript" src="{% static 'js/event_create_form.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/event_create_form.js' %}"></script>
 {% endblock %}

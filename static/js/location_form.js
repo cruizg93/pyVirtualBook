@@ -21,6 +21,7 @@ window.onload = function(){
     document.getElementById("id_state").onchange = function(){loadCounties();};
     document.getElementById("id_county").onchange = function(){loadCities();};
     document.getElementById("id_city").onchange = function(){loadZipCode()};
+    $("#id_county").autocomplete();
 }
 
 function loadCounties() {
@@ -43,6 +44,7 @@ function loadCounties() {
             opt.innerHTML = data;
             document.getElementById("id_county").appendChild(opt);
         });
+
         if(!editableLocation){
             document.getElementById("id_county").value = "HILLSBOROUGH";
         }else{
@@ -50,7 +52,6 @@ function loadCounties() {
         }
         loadCities();
     });
-
 }
 
 function loadCities(){

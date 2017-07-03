@@ -1,6 +1,9 @@
 {% extends 'base/base.html' %}
 {% load widget_tweaks %}
 {% load staticfiles %}
+{% block extrastatic %}
+{% endblock %}
+
 {% block content %}
     <form method="POST">
 	{% csrf_token %}
@@ -30,6 +33,6 @@
             editableLocation = false;
         {% endif %}
     </script>
-<script type="text/javascript" src="{% static 'js/states.json' %}"></script>
-<script type="text/javascript" src="{% static 'js/location_form.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/states.json' %}"></script>
+    <script type="text/javascript" src="{% static 'js/location_form.js' %}"></script>
 {% endblock %}

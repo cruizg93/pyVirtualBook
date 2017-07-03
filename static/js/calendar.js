@@ -24,7 +24,7 @@ function fillCalendar(jsonEvent){
 
     var newHTML = "";
     var dayOfWeekIndex = 0;
-    for(var d=(1-fillBegin(calendarMonth,year));d<=(daysInMonth(getMonthNumber(calendarMonth),year)+fillEnd(calendarMonth,year));d++){
+    for(var d=(1-fillBegin(calendarMonth,year));d<=(daysInMonth(getMonthNumber(calendarMonth,year),year)+fillEnd(calendarMonth,year));d++){
         var eventDay = getDayNumber(days[0]);
         if(dayOfWeekIndex===0){
             newHTML += "<div class='row'>";
@@ -35,7 +35,7 @@ function fillCalendar(jsonEvent){
             newHTML +="<div class='day empty'>";
         }
         newHTML +="<p class='number'><span class='insideDayName'>"+dayName[dayOfWeekIndex]+"</span>";
-        if(d>0 && d<= (daysInMonth(getMonthNumber(calendarMonth),year))){
+        if(d>0 && d<= (daysInMonth(getMonthNumber(calendarMonth,year),year))){
             newHTML += d;
         }else{
             newHTML +="-";

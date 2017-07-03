@@ -10,14 +10,16 @@ class Event(models.Model):
     contact_date = models.DateField(null=True, blank=True)
     drop_off_time = models.TimeField(null=True, blank=True)
     pick_up_time = models.TimeField(null=True, blank=True)
+    start_time = models.TimeField(null=True, blank=True)
     event_date = models.DateField(null=True, blank=True)
     event_name = models.CharField(max_length=100)
     comments = models.TextField(null=True, blank=True)
     forward_payment = models.FloatField(null=True, blank=True, default=0)
     tax_percentage = models.FloatField(null=True, blank=True, default=0)
     delivery_cost = models.FloatField(null=True, blank=True, default=0)
-    state = models.PositiveSmallIntegerField(null=True,blank=True,default=1)
-    # TODO: add ballroom name, event start time, floor level
+    state = models.PositiveSmallIntegerField(null=True, blank=True,default=1)
+    ballroom = models.CharField(null=True, blank=True, max_length=100)
+    floor_level = models.CharField(null=True, blank=True, max_length=100)
 
     def __str__(self):
         return '{} | {}{}'.format(self.event_date, self.client.name, self.client.company_name)

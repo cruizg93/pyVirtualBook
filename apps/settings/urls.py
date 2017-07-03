@@ -1,11 +1,14 @@
 from django.conf.urls import url, include
-from apps.settings.views import ClientCreate,ClientList, ClientUpdate, ClientDelete
-from apps.settings.views import LocationCreate, LocationList, LocationUpdate, LocationDelete
-from apps.settings.views import ItemCreate, ItemList, ItemUpdate, ItemDelete
+from apps.settings.views import ClientCreate,ClientList, ClientUpdate, ClientDelete, ClientAutocomplete
+from apps.settings.views import LocationCreate, LocationList, LocationUpdate, LocationDelete, LocationAutocomplete
+from apps.settings.views import ItemCreate, ItemList, ItemUpdate, ItemDelete, ItemAutocomplete
 from apps.settings.views import settings_menu
 
 urlpatterns = [
-    url(r'^$',settings_menu, name="settingsMenu"),
+    url(r'^$', settings_menu, name="settingsMenu"),
+    url(r'^client-autocomplete/$', ClientAutocomplete.as_view(), name='client_autocomplete'),
+    url(r'^location-autocomplete/$', LocationAutocomplete.as_view(), name='location_autocomplete'),
+    url(r'^item-autocomplete/$', ItemAutocomplete.as_view(), name='item_autocomplete'),
     url(r'^client/create$', ClientCreate.as_view(), name='client_create'),
     url(r'^client$', ClientList.as_view(), name='client_list'),
     url(r'^client/list$', ClientList.as_view(), name='client_list'),

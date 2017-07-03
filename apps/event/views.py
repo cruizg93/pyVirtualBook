@@ -41,39 +41,7 @@ class ContractPDFView(PDFTemplateView):
             itemEvent=itemEvent,
             **kwargs
         )
-        print("******************")
-        print(event)
         return context
-
-
-class CalendarView(ListView):
-    model = Event
-    template_name = "event/calendar.html"
-    actualMonth = datetime.date.today()
-    queryset = None
-
-    def get_context_data(self, **kwargs):
-        context = super(CalendarView, self).get_context_data(**kwargs)
-        new_month = self.request.GET.get('newmonth')
-        if new_month is not None:
-            context['month'] = calendar.month_name[int(new_month)]
-            context['previous_month'] = int(new_month) - 1
-            context['next_month'] = int(new_month) + 1
-        else:
-            context['month'] = calendar.month_name[self.actualMonth.month]
-            context['previous_month'] = int(self.actualMonth.month) - 1
-            context['next_month'] = int(self.actualMonth.month) + 1
-        return context
-
-    def get_queryset(self):
-        new_month = self.request.GET.get("newmonth")
-        if new_month is not None:
-            queryset = Event.objects.filter(event_date__month=new_month).order_by("event_date")
-        else:
-            queryset = Event.objects.filter(event_date__month=datetime.date.today().month).order_by("event_date")
-
-        response = serializers.serialize("json", queryset)
-        return response
 
 
 class EventCreate(CreateView):
@@ -107,6 +75,29 @@ class EventCreate(CreateView):
             return self.render_to_response(self.get_context_data(form1=form1, form2=form2))
 
 
+class CalendarView(ListView):
+    model = Event
+    template_name = "event/calendar.html"
+    actualMonth = datetime.date.today()
+    queryset = None
+
+    def get_context_data(self, **kwargs):
+        context = super(CalendarView, self).get_context_data(**kwargs)
+        return arrowed_month(self, context)
+
+    def get_queryset(self):
+        new_month = self.request.GET.get("newmonth")
+        new_year = self.request.GET.get('newyear')
+        if new_month is not None:
+            queryset = Event.objects.filter(event_date__month=new_month,
+                                            event_date__year=new_year).order_by("event_date")
+        else:
+            queryset = Event.objects.filter(event_date__month=datetime.date.today().month,
+                                            event_date__year=datetime.date.today().year).order_by("event_date")
+        response = serializers.serialize("json", queryset)
+        return response
+
+
 class EventList(ListView):
     model = Event
     template_name = 'event/event_list.html'
@@ -115,23 +106,16 @@ class EventList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(EventList, self).get_context_data(**kwargs)
-        new_month = self.request.GET.get('newmonth')
-        if new_month is not None:
-            context['month'] = calendar.month_name[int(new_month)]
-            context['previous_month'] = int(new_month)-1
-            context['next_month'] = int(new_month)+1
-        else:
-            context['month'] = calendar.month_name[self.actualMonth.month]
-            context['previous_month'] = int(self.actualMonth.month) - 1
-            context['next_month'] = int(self.actualMonth.month) + 1
-        return context
+        return arrowed_month(self, context)
 
     def get_queryset(self):
         new_month = self.request.GET.get("newmonth")
+        new_year = self.request.GET.get('newyear')
         if new_month is not None:
-            queryset = Event.objects.filter(event_date__month=new_month).order_by('pk')
+            queryset = Event.objects.filter(event_date__month=new_month, event_date__year=new_year).order_by('pk')
         else:
-            queryset = Event.objects.filter(event_date__month=datetime.date.today().month).order_by('pk')
+            queryset = Event.objects.filter(event_date__month=datetime.date.today().month,
+                                            event_date__year=datetime.date.today().year).order_by('pk')
         return queryset
 
 
@@ -172,3 +156,33 @@ class EventDelete(DeleteView):
     model = Event
     template_name = 'event/event_delete.html'
     success_url = reverse_lazy("event:event_list")
+
+
+# This function determine which is the previous, current & next
+# month calendar including year
+def arrowed_month(self, context):
+    new_month = self.request.GET.get('newmonth')
+    year = self.request.GET.get('newyear')
+    if new_month is not None:
+        if int(new_month) > 12:
+            context['month'] = calendar.month_name[1]
+            context['previous_month'] = 12
+            context['next_month'] = 2
+            context['year'] = int(year) + 1
+        elif int(new_month) < 1:
+            context['month'] = calendar.month_name[12]
+            context['previous_month'] = 11
+            context['next_month'] = 1
+            context['year'] = int(year) - 1
+        else:
+            context['month'] = calendar.month_name[int(new_month)]
+            context['previous_month'] = int(new_month) - 1
+            context['next_month'] = int(new_month) + 1
+            context['year'] = int(year)
+    else:
+        context['month'] = calendar.month_name[self.actualMonth.month]
+        context['previous_month'] = int(self.actualMonth.month) - 1
+        context['next_month'] = int(self.actualMonth.month) + 1
+        context['year'] = self.actualMonth.year
+
+    return context
