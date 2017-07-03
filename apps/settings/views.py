@@ -15,11 +15,24 @@ def settings_menu(request):
     return render(request, "settings/settings_menu.html")
 
 
+# TODO: future feature
+# This view work as a Full template & as Modal view in Event_create form
 class ClientCreate(CreateView):
     model = Client
     form_class = ClientForm
     template_name = 'settings/client_form.html'
     success_url = reverse_lazy('settings:client_list')
+    modal = 0
+
+    def get_form_kwargs(self, **kwargs):
+        if 'modal' in self.kwargs:
+            self.modal = self.kwargs['modal']
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(ClientCreate, self).get_context_data(**kwargs)
+        context['modal'] = self.modal
+        return context
 
 
 class ClientUpdate(UpdateView):
@@ -32,7 +45,8 @@ class ClientUpdate(UpdateView):
 class ClientList(ListView):
     model = Client
     template_name = 'settings/client_list.html'
-    paginate_by = 10
+    # paginate replace with JQuery plugin
+    # paginate_by = 10
     ordering = ['company_name']
 
 
@@ -59,7 +73,8 @@ class LocationUpdate(UpdateView):
 class LocationList(ListView):
     model = Location
     template_name = 'settings/location_list.html'
-    paginate_by = 10
+    # paginate replace with JQuery plugin
+    # paginate_by = 10
     ordering = ['building_name']
 
 
@@ -86,7 +101,8 @@ class ItemUpdate(UpdateView):
 class ItemList(ListView):
     model = Item
     template_name = 'settings/item_list.html'
-    paginate_by = 8
+    # paginate replace with JQuery plugin
+    # paginate_by = 8
     ordering = ['description']
 
 
@@ -98,7 +114,7 @@ class ItemDelete(DeleteView):
 
 class ClientAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        qs = Client.objects.all()
+        qs = Client.objects.all().order_by('name')
         if self.q:
             qs = qs.filter(name__istartswith=self.q).order_by('name')
         return qs

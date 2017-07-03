@@ -15,3 +15,15 @@
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
+
+.container .main{
+    width: 100%;
+}
+
+.modalBtn{
+    padding: 0px 5px 0px 5px!important;
+}
+
+div.modal-body>div.container.main>div.bs-docs-section.clearfix{
+    display: none;
+}

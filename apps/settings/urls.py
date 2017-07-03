@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^location-autocomplete/$', LocationAutocomplete.as_view(), name='location_autocomplete'),
     url(r'^item-autocomplete/$', ItemAutocomplete.as_view(), name='item_autocomplete'),
     url(r'^client/create$', ClientCreate.as_view(), name='client_create'),
+    url(r'^client/create/(?P<modal>\d+)/$', ClientCreate.as_view(), name='client_create'),
     url(r'^client$', ClientList.as_view(), name='client_list'),
     url(r'^client/list$', ClientList.as_view(), name='client_list'),
     url(r'^client/update/(?P<pk>\d+)/$', ClientUpdate.as_view(), name='client_update'),

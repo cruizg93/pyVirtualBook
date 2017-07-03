@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-    console.log( "ready!" );
     $("#delivery_cost").val("0");
     $("#tax_percentage").val("0");
     $("#subtotal").val("0");
@@ -11,6 +10,8 @@ $( document ).ready(function() {
     });
 
     calculateTotal();
+    //Modal [future feature]
+    //document.getElementById("btnClientModal").onclick = function(){createClientModal();};
 });
 
 function calculateTotal(){
@@ -27,7 +28,6 @@ function calculateTotal(){
     }
     subtotal = parseFloat(itemPrice)+parseFloat(delivery);
     $("#subtotal").val(subtotal);
-    console.log(subtotal);
     /* END OF SUBTOTAL CALULATION*/
 
     var tax_percentage = $("#id_tax_percentage").val();
@@ -42,4 +42,14 @@ function calculateTotal(){
     }
     $("#total").val(total);
 }
-	
+/*MODAL [FUTURE FEATURE]
+function createClientModal(){
+    $.ajax({
+      method: "GET",
+      url: clientCreatModalURL+"/1"
+    }).done(function( msg ) {
+        $('#clientModalBody').html(msg);
+        $('#myModal').modal('show');
+    });
+}
+*/

@@ -6,10 +6,31 @@
 {% endblock %}
 {% block content%}
 
+<!-- Modal Client Form [future feature]
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Client Form</h4>
+        </div>
+        <div class="modal-body" id="clientModalBody">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+-->
+
 <form method="post">
 	{% csrf_token %}
 		<div class="col-md-6">
 			<div class="form-group">
+                <!-- modal feature <button id="btnClientModal" type="button" class="btn btn-success modalBtn" data-toggle="modal" data-target="#myModal">+</button>-->
 				<label>Client</label>
 				{{ form.client|add_class:"" }}
 			</div>
@@ -144,5 +165,9 @@
 {%endblock%}
 
 {% block javascript %}
+    <script type="text/javascript">
+        var clientCreatModalURL = '{% url "settings:client_create" %}';
+
+    </script>
     <script type="text/javascript" src="{% static 'js/event_create_form.js' %}"></script>
 {% endblock %}
