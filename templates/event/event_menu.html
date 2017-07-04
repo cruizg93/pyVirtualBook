@@ -1,0 +1,28 @@
+{% load staticfiles %}
+{% block extrastatic%}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menuDisplay.css' %}">
+{% endblock %}
+{% block content%}
+    <div class="content text-center">
+        <h1>EVENTS</h1>
+        <div class="col-md-3 col-xs-6 block">
+            <a href="{% url 'event:calendarView' %}"><div>
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <p class="title">CALENDAR</p>
+            </div></a>
+        </div>
+        <div class="col-md-3 col-xs-6 block">
+           <a href="{% url 'event:event_create' %}"><div>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <p class="title">NEW</p>
+           </div></a>
+        </div>
+        <div class="col-md-3 col-xs-6 block">
+            <a href="{% url 'event:event_list' %}"><div>
+                <i class="fa fa-file-o" aria-hidden="true"></i>
+                <p class="title">REPORTS</p>
+            </div></a>
+        </div>
+    </div>
+
+{% endblock %}

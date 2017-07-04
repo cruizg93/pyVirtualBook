@@ -9,7 +9,6 @@ from easy_pdf.views import PDFTemplateView
 from apps.event.models import Event, ItemEvent
 from apps.event.forms import EventForm, ItemEventForm
 
-
 class HelloPDFView(PDFTemplateView):
     template_name = 'reports/contract_PDF.html'
     base_url = 'file://'+settings.STATIC_URL
@@ -128,10 +127,12 @@ class EventUpdate(UpdateView):
     success_url = reverse_lazy('event:event_list')
 
     def get_context_data(self, **kwargs):
-        context = super(EventUpdate,self).get_context_data(**kwargs)
+        context = super(EventUpdate, self).get_context_data(**kwargs)
         pk = self.kwargs.get('pk', 0)
         event = self.model.objects.get(id=pk)
         itemEvent = self.second_model.objects.filter(event__id=pk).first()
+        # sub_total = (itemEvent.quantity*itemEvent.unit_price) + event.delivery_cost
+        # event.balance = ((sub_total * (event.tax_percentage/100)) + sub_total)-event.forward_payment
         if 'form' not in context:
             context['form'] = self.form_class()
         if 'form2' not in context:

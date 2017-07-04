@@ -5,7 +5,7 @@
         {% csrf_token %}
         {{ form.as_p }}
 
-        <!-- TODO: modal form from event form. [future feature]
+        <!-- TODO: modal form from event form. [future feature]-->
         {% if modal %}
             <button type="button" class="btn btn-primary" id="btnSave" onclick="saveWithAJAX('clientForm')">Save</button>
         {% else %}

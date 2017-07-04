@@ -20,6 +20,7 @@ class Event(models.Model):
     state = models.PositiveSmallIntegerField(null=True, blank=True,default=1)
     ballroom = models.CharField(null=True, blank=True, max_length=100)
     floor_level = models.CharField(null=True, blank=True, max_length=100)
+    balance = 0
 
     def __str__(self):
         return '{} | {}{}'.format(self.event_date, self.client.name, self.client.company_name)

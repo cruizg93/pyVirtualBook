@@ -22,17 +22,6 @@ class ClientCreate(CreateView):
     form_class = ClientForm
     template_name = 'settings/client_form.html'
     success_url = reverse_lazy('settings:client_list')
-    modal = 0
-
-    def get_form_kwargs(self, **kwargs):
-        if 'modal' in self.kwargs:
-            self.modal = self.kwargs['modal']
-        return kwargs
-
-    def get_context_data(self, **kwargs):
-        context = super(ClientCreate, self).get_context_data(**kwargs)
-        context['modal'] = self.modal
-        return context
 
 
 class ClientUpdate(UpdateView):

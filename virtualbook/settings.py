@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'easy_pdf',
     'datetimewidget',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

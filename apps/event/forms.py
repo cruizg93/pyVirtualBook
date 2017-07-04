@@ -8,7 +8,23 @@ class EventForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = [
+            'location',
+            'client',
+            'contact_date',
+            'drop_off_time',
+            'pick_up_time',
+            'start_time',
+            'event_date',
+            'event_name',
+            'comments',
+            'forward_payment',
+            'tax_percentage',
+            'delivery_cost',
+            'state',
+            'ballroom',
+            'floor_level',
+        ]
         labels = {
             'location': 'Location',
             'client': 'Client',
@@ -19,8 +35,8 @@ class EventForm(forms.ModelForm):
             'event_date': 'Event Date',
             'event_name': 'Event Name',
             'comments': 'Comments',
-            'forward_payment': 'Forward Payment',
-            'tax_percentage':'Tax %',
+            'forward_payment': 'Payment',
+            'tax_percentage': 'Tax %',
             'delivery_cost': 'Delivery',
             'state': 'State or Status',
             'ballroom': 'Ballroom Name (If any)',
